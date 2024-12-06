@@ -1,7 +1,7 @@
 import math
 
-def f(Vmp):
-    return 40.0744 * Vmp - math.exp(19.5372 - 39.0744 * Vmp)
+def f(x):
+    return (math.e ** (39.0744 * x)) * (1 + 39.0744 * x) - (math.e ** 19.5372)
 
 def derivada(x, eps):
     return (f(x + eps) - f(x)) / eps
