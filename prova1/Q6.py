@@ -1,3 +1,10 @@
+''''
+6ªQuestão Implemente usando a linguagem Python o método do ponto fixo,
+meça a quantidade de iterações e o tempo de execução deste método.
+Atenção no momento de escolher a função de iteração 𝜑. Escolha uma
+função, um intervalo e uma precisão e compare quantidade de iterações entre
+o método do ponto fixo e os métodos da bissecção.
+'''
 from time import perf_counter as time
 from Q3_bisseccao import bis
 

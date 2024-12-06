@@ -1,3 +1,15 @@
+''''
+3ª Questão: Implemente o método da bissecção usando a linguagem de
+programação Python. O algoritmo deve fornecer como resposta se uma
+função escolhida pelo usuário possui ou não raiz em um intervalo [a, b]
+escolhido também pelo usuário. Cuide para que seu algoritmo analise todas
+as possibilidades acerca da escolha da raiz. A quantidade de interações do
+algoritmo não pode ser superior a
+
+Onde a e b são os extremos do intervalo e 𝜀 a precisão do problema. Meça
+também o tempo de execução e a quantidade de iterações necessárias para
+encontrar a raiz.
+'''
 import math
 
 def f(x):

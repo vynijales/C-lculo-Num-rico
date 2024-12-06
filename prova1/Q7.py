@@ -1,3 +1,8 @@
+''''
+7ªQuestão Implemente usando a linguagem Python os métodos de Newton
+e da secante. Compare os métodos, análise qual executa menos iterações e
+menos tempo para o cálculo da raiz de uma função escolhida pelo usuário.
+'''
 from time import perf_counter as time
 
 def f(x):

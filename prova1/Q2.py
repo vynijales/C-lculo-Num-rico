@@ -1,3 +1,11 @@
+'''
+2ª Questão: Faça um código em Python para discretizar as derivadas de
+ordem 1, 2 e 3 de quatro maneiras diferentes para uma única função a ser
+escolhida pelo usuário. O ponto em que a derivada vai ser calculada fica a
+critério do usuário. Calcule também o erro percentual em cada cálculo de
+derivada realizado.
+'''
+
 def discretizar_derivadas():
     def f(x):
         """Define a função escolhida pelo usuário."""

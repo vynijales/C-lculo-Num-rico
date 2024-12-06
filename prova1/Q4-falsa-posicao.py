@@ -1,3 +1,13 @@
+'''
+4ª Questão: Implemente o método da falsa posição usando a linguagem de
+programação Python. O algoritmo deve fornecer como resposta se uma
+função escolhida pelo usuário possui ou não raiz em um intervalo [a, b]
+escolhido também pelo usuário. Cuide para que seu algoritmo analise todas
+as possibilidades acerca da escolha da raiz. Meça também o tempo de
+execução e compare com o método da bissecção e a quantidade de iterações
+necessárias para encontrar a raiz.
+'''
+
 import math
 
 def f(x):
