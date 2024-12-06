@@ -73,8 +73,8 @@ def discretizar_derivadas():
     metodos_terceira = [
         (f(x0 + 2 * h) - 2 * f(x0 + h) + 2 * f(x0 - h) - f(x0 - 2 * h)) / (2 * h**3),  # Diferença combinada
         (f(x0 + 3 * h) - 3 * f(x0 + 2 * h) + 3 * f(x0 + h) - f(x0)) / h**3,  # Diferenças progressivas
-        (-f(x0 + 2 * h) + 2 * f(x0 + h) - 2 * f(x0 - h) + f(x0 - 2 * h)) / (2 * h**3),  # Diferenças centradas
-        (-3 * f(x0) + 10 * f(x0 + h) - 15 * f(x0 + 2 * h) + 6 * f(x0 + 3 * h)) / h**3,  # Diferença avançada
+        (-f(x0 + 3 * h) + 3 * f(x0 + 2 * h) - 3 * f(x0 + h) + f(x0)) / h**3,  # Diferença progressiva de 4 pontos
+        (f(x0 + 2 * h) - 2 * f(x0 + h) + 2 * f(x0 - h) - f(x0 - 2 * h)) / h**3,  # Diferença combinada refinada
     ]
 
     for metodo in metodos_terceira:
