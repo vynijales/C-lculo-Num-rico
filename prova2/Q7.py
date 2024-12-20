@@ -2,7 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# avalia o polinomio interpolador usando polinomios de Lagrange
+# 7ª Questão: Implementar um algoritmo em Python para o polinômio de 
+# Lagrange. Este algoritmo deve receber um arquivo e partir deste extrair os 
+# valores de x e y para serem utilizados na construção do polinômio de 
+# Lagrange.
+
+# Avalia o polinomio interpolador usando polinomios de Lagrange
 def interpolL(x,T):
     Soma=0
     for i in range(len(T)):
@@ -13,7 +18,7 @@ def interpolL(x,T):
             Soma=Soma+T[i][1]*produto
     return Soma
 
-# Ler de um arquivo csv
+# Extrai os valores de um arquivo csv
 def getT():
     T = []
     df = pd.read_csv('prova2/usina_solar.csv')
