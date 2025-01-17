@@ -20,7 +20,7 @@ def interpolL(x,T):
 T = []
 
 # Coloca os dados do .csv na matriz T
-with open('pontosQ8b.csv', newline='') as csvfile:
+with open('prova2/pontosQ8b.csv', newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
 
     pulaLinha1 = True
