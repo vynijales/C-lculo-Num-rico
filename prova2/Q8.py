@@ -1,54 +1,66 @@
+import csv
 import numpy as np
+import matplotlib.pyplot as plt
+import math
 
-def lagrange(x,T):
-  Soma=0
-  for i in range(len(T)):
-    produto=1.0
-    for j in range(len(T)):
-      if j==i: continue
-      produto=produto*(x-T[j][0])/(T[i][0]-T[j][0])
-    Soma=Soma+T[i][1]*produto
-  return Soma
+# avalia o polinomio interpolador usando polinomios de Lagrange
+def interpolL(x,T):
+    Soma=0
+    for i in range(len(T)):
+        produto=1.0
+        
+        for j in range(len(T)):
+            if j==i: continue
+            produto=produto*(x-T[j][0])/(T[i][0]-T[j][0])
+        
+        Soma=Soma+T[i][1]*produto
 
-# A
-def f(x):
-    return np.exp(x)
+    return Soma
 
-# Pontos utilizados para aproximacão: 3.0, 3.1, 3.3
-T = (
-    (3, f(3)),
-    (3.2, f(3.2)),
-    (3.3, f(3.3))
-)
+T = []
 
-x = 3.1
+# Coloca os dados do .csv na matriz T
+with open('prova2/pontosQ8b.csv', newline='') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
 
-res = lagrange(x, T)
-erro_absoluto = abs(np.exp(3.1) - res)
-erro_relativo = (erro_absoluto / np.exp(3.1)) * 100
+    pulaLinha1 = True
 
-print("==== Letra A =====")
-print(f"Valor Calculado com o Polinômio de Lagrange: {res}\nValor Real: {np.exp(3.1)}")
-print(f"Erro absoluto: {erro_absoluto}\nErro Relativo: {erro_relativo}%")
+    for row in spamreader:
 
+        # Pula a linha que tem as letras 'x' e 'y'
+        if pulaLinha1:
+            pulaLinha1 = False
+            continue
 
-# B
-# Valores da tabela fornecida
-x = [2.4, 2.6, 2.8, 3.0, 3.2, 3.4, 3.6, 3.8]
-y = [11.02, 13.46, 16.44, 20.08, 24.53, 29.96, 36.59, 44.70]
+        result = row[0].split(',')
+        T.append((float(result[0]), float(result[1])))
 
-# Função exata para comparação (e^x)
-def f(x):
-    return np.exp(x)
+# função para calcular o limitante (é especifica para função da questão)
+def calc_limitante(x, T):
 
-# Valores exatos para os pontos fornecidos
-y_exato = [f(x) for x in x]
+    # A formula do limitante é E_n(x) = (f^(n+1)(ξ))/(n+1)! * ((|x-x_0|) * ... * (|x-x_n|))
+    # E_n(x) = derivada_n+1(ξ)/(n+1)! * produtorio(x - x_i), i = 0 .. n
 
-# Erros entre os valores fornecidos e os valores exatos
-erros = [abs(y_ex - y_tab) for y_ex, y_tab in zip(y_exato, y)]
+    ξ = max(T)[0] # Maior ponto no intervalo para garantir o valor máximo da derivada (levando em conta que a função é e^x).
 
-# Encontrando o erro máximo
-erro_max = max(erros)
+    derivada = math.exp(ξ) # A função é e^x, logo a derivada em qualquer grau sempre será e^x.
 
-print("==== Letra B =====")
-print(f"O erro máximo cometido é: {erro_max:.4f}")
+    fatorial = math.factorial(len(T)) # fatorial de n+1 (polinomio de grau 2 -> n=2, sendo n+1 a quantidade de pontos)
+
+    produtorio = 1 # inicializando variavel
+
+    for i in range(len(T)):
+        produtorio *= (x - T[i][0]) # cálculo do produtorio (x - x_i), i = 0 .. n
+
+    return (derivada/fatorial)*abs(produtorio) # cálculo do limitante com a formula
+
+x_alvo = 3.1 # ponto alvo
+
+limitante = calc_limitante(x_alvo, T) # limitante do erro no ponto alvo
+
+# define o polinomio interpolador p(x)
+p= lambda x: interpolL(x,T) 
+
+print(p(x_alvo))
+print(math.e**x_alvo)
+print(limitante) # resposta final
